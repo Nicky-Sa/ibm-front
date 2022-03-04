@@ -1,11 +1,9 @@
 import type {NextPage} from 'next'
 import Head from 'next/head';
 import styles from '../styles/Home.module.css';
-import {ChatAlt2Icon, PlusIcon, ChevronDoubleRightIcon, SelectorIcon, CheckIcon} from '@heroicons/react/solid';
-import {Fragment, useEffect, useState} from "react";
-import {Dialog, Listbox, Transition} from "@headlessui/react";
+import {ChatAlt2Icon, PlusIcon} from '@heroicons/react/solid';
+import {useEffect, useState} from "react";
 import axios from "axios";
-import router from "next/router"
 
 
 export default function Home() {
@@ -13,10 +11,10 @@ export default function Home() {
 
 	useEffect(() => {
 		//TODO: change the url to get-movies endpoint
-		axios.get('https://fakestoreapi.com/products?limit=4')
+		axios.get('http://localhost:4000/get-movies')
 			.then(function (response: any) {
 				// handle success
-				setMovies(response.data)
+				setMovies(response.data.movies)
 			})
 			.catch(function (error: any) {
 				// handle error
@@ -46,26 +44,22 @@ export default function Home() {
 				</p>
 
 				<ul role = "list" className = "grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-					{/*
-					 TODO: title, director, genre, poster
-					 */
-					}
-					{movies.map(({title, price, category, image}) => (
+					{movies.map(({title, director, genre, poster}) => (
 						<li
 							key = {title}
 							className = "col-span-1 flex flex-col text-center bg-white rounded-lg shadow divide-y divide-gray-200"
 						>
 							<div className = "flex-1 flex flex-col p-8">
-								<img className = "w-32 h-32 flex-shrink-0 mx-auto rounded" src = {image}
+								<img className = "w-32 h-32 flex-shrink-0 mx-auto rounded" src = {poster}
 								     alt = ""/>
 								<h3 className = "mt-6 text-gray-900 text-sm font-medium">{title}</h3>
 								<dl className = "mt-1 flex-grow flex flex-col justify-between">
 									<dt className = "sr-only">Director</dt>
-									<dd className = "text-gray-500 text-sm">{price}</dd>
+									<dd className = "text-gray-500 text-sm">{director}</dd>
 									<dt className = "sr-only">Genre</dt>
 									<dd className = "mt-3">
                 <span className = "px-2 py-1 text-blue-800 text-xs font-medium bg-blue-100 rounded-full">
-                  {category}
+                  {genre}
                 </span>
 									</dd>
 								</dl>
@@ -83,7 +77,7 @@ export default function Home() {
 									</div>
 									<div className = "-ml-px w-0 flex-1 flex">
 										<a
-											href = {`/addComment?title=${title}`}
+											href = {`/addComment?movie=${title}`}
 											className = "relative w-0 flex-1 inline-flex items-center justify-center py-4 text-sm text-gray-700 font-medium border border-transparent rounded-br-lg hover:text-gray-500"
 										>
 											<PlusIcon className = "w-5 h-5 text-gray-400" aria-hidden = "true"/>

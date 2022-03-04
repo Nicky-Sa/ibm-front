@@ -7,30 +7,27 @@ import {useRouter} from "next/router";
 export default function AddComment() {
     const [selectedFile, setSelectedFile] = useState(null);
     const router = useRouter()
-    const {title} = router.query
+    const {movie} = router.query
 
     function submitVoice() {
         const formData = new FormData();
-        formData.append("title", title);
+        formData.append("movie", movie);
         formData.append("comment", selectedFile);
         //TODO: send the comment to the back-end!
         //
-        // axios.post("http://localhost:4000/upload-voice", formData)
-        //     .then((res) => {
-        //         alert("File Upload success");
-        //     })
-        //     .catch((err) => alert("File Upload Error"));
-        // -------------------------------------------
-        // try {
-        // 			 const response = await axios({
-        // 				 method: "post",
-        // 				 url: "/api/upload/file",
-        // 				 data: formData,
-        // 				 headers: {"Content-Type": "multipart/form-data"},
-        // 			 });
-        // 		 } catch (error) {
-        // 			 console.log(error)
-        // 		 }
+        axios.post(`http://localhost:4000/add-comment`, formData, {
+            "Content-Type": "multipart/form-data"
+        })
+            .then((res) => {
+                let anger = res.data.anger;
+                if (anger < 50){
+                    alert(`File Upload Successful with ${anger}% anger.`);
+                }
+                else {
+                    alert(`File Upload Successful with ${anger}% anger but not accepted!`);
+                }
+            })
+            .catch((err) => alert(`File Upload Error`));
     }
 
     return (
@@ -68,15 +65,17 @@ export default function AddComment() {
                             <div className = " text-sm text-gray-600">
                                 <label className = "block">
                                     <span className = "sr-only">Choose voice</span>
+                                    <form encType ="multipart/form-data">
                                     <input
                                         className = "block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded file:border-0 file:text-sm file:font-semibold file:bg-indigo-50 file:text-indigo-700 hover:file:bg-indigo-100"
-                                        type = "file" id = "voice" name = "voice"
+                                        type = "file" id = "comment" name = "comment"
                                         onChange = {(e) => setSelectedFile(e.target.files[0])}
                                     />
+                                    </form>
                                 </label>
                                 <p className = "pl-1 mt-3">or drag and drop</p>
                             </div>
-                            <p className = "pt-5 text-xs text-gray-500">MP3, MAV up to 10MB</p>
+                            <p className = "pt-5 text-xs text-gray-500">only MP3 up to 10MB</p>
                         </div>
                     </div>
                 </div>
