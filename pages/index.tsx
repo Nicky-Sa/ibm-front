@@ -11,7 +11,7 @@ export default function Home() {
 
 	useEffect(() => {
 		//TODO: change the url to get-movies endpoint
-		axios.get('http://localhost:5000/get-movies')
+		axios.get('http://185.110.189.42:5000/get-movies')
 			.then(function (response: any) {
 				// handle success
 				setMovies(response.data.movies)
