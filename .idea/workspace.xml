@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="af634e62-50e1-41c0-8eb2-68303485f939" name="Changes" comment="trying to fix typescript!">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -84,7 +85,7 @@
       <workItem from="1646563774038" duration="1915000" />
       <workItem from="1646589368736" duration="413000" />
       <workItem from="1646589808448" duration="532000" />
-      <workItem from="1646592522097" duration="2372000" />
+      <workItem from="1646592522097" duration="3626000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <created>1646334573810</created>
@@ -121,7 +122,14 @@
       <option name="project" value="LOCAL" />
       <updated>1646594590892</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="trying to fix typescript!">
+      <created>1646595261620</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1646595261620</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
