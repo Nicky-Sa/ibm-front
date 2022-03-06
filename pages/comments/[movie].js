@@ -23,7 +23,7 @@ export default function Comments() {
 
     useEffect(() => {
         // TODO: inform the back-end to translate again.
-        axios.get(`http://localhost:4000/get-comments?movie=${movie}&language=${selectedLang.name.slice(5, selectedLang.name.length)}`)
+        axios.get(`http://localhost:5000/get-comments?movie=${movie}&language=${selectedLang.name.slice(5, selectedLang.name.length)}`)
             .then(function (response) {
                 // handle success
                 setComments(response.data.comments)

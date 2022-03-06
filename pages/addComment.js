@@ -15,7 +15,7 @@ export default function AddComment() {
         formData.append("comment", selectedFile);
         //TODO: send the comment to the back-end!
         //
-        axios.post(`http://localhost:4000/add-comment`, formData, {
+        axios.post(`http://localhost:5000/add-comment`, formData, {
             "Content-Type": "multipart/form-data"
         })
             .then((res) => {
